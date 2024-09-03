@@ -1,8 +1,11 @@
 import Coin from "@/components/Logos/Coins";
 import CoinFunding from "@/components/Logos/CoinFunding";
 import Idea from "@/components/Logos/Idea";
+import LoginButton from "@/components/LoginButton";
 
 export default function Home() {
+
+
   return (
     <>
       <div className="h-[83vh] text-white flex flex-col gap-4 justify-center items-center container w-[80%] mx-auto md:w-[40%] 2xl:w-[30%]">
@@ -13,12 +16,12 @@ export default function Home() {
           Join FanFuel today to fuel the creativity of the artists you admire. Your support empowers creators to bring their visions to life!
         </p>
         <div>
-          <button type="button" className="text-white w-[8rem] bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold rounded-full  px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SignUp</button>
-          <button type="button" className="text-white w-[8rem] bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold rounded-full  px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+          {/* <button type="button" className="text-white w-[8rem] bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold rounded-full  px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SignUp</button> */}
+          <LoginButton />
         </div>
       </div>
 
-      <div className="min-h-[70vh] text-white flex flex-col gap-4 items-center container w-[90%] mx-auto p-2">
+      <div className="min-h-[70vh] text-white flex flex-col gap-4 items-center container w-[90%] mx-auto p-2 mb-4">
         <h2 className="font-bold text-3xl text-center">Fueling Projects, One Fan at a Time</h2>
         <h3 className="mt-10 font-bold text-xl text-center">What can you do with FanFuel ?</h3>
 
