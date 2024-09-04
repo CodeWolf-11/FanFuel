@@ -1,6 +1,5 @@
 import React from "react";
 import "@/public/man.png";
-import { Mandali } from "next/font/google";
 
 const Navbar: React.FC<{ params: { [key: string]: string } }> = ({ params }) => {
     return <>

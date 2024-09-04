@@ -12,6 +12,7 @@ const Page: React.FC = () => {
 
     if (session) {
         router.push('/dashboard');
+        console.log(session);
     }
 
     return <>

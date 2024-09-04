@@ -51,6 +51,9 @@ const Navbar: React.FC = () => {
                                         <Link href="/" className={`${(currentPath === "/") ? "bg-slate-800" : ""} px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex items-center w-full justify-center rounded-lg`}>Home</Link>
                                     </li>
                                     <li>
+                                        <Link href="/rnishant9970" className={`${(currentPath === "/rnishant9970") ? "bg-slate-800" : ""} px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex items-center w-full justify-center rounded-lg`}>Profile</Link>
+                                    </li>
+                                    <li>
                                         <button onClick={() => signOut()} className="px-4 py-2 hover:bg-gray-100 mt-2 font-bold  dark:hover:bg-gray-600 dark:hover:text-white w-full flex gap-4 items-center justify-center bg-red-500 rounded-lg">Sign out <Logout /></button>
                                     </li>
                                 </ul>
