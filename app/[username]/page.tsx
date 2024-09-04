@@ -1,12 +1,14 @@
 import React from "react";
+import "@/public/man.png";
+import { Mandali } from "next/font/google";
 
 const Navbar: React.FC<{ params: { [key: string]: string } }> = ({ params }) => {
     return <>
         <div className="w-[full]">
             <div className="banner-image relative w-full">
-                <img className="object-contain w-full h-full" src="https://yt3.googleusercontent.com/mLmhDvFixcJ0_qhojvaYJYTYkpzqAIY4Crn20jLOCfqyb5SqIi1O4NDFHa8Gbljh-T_1yZf2Fg=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" alt="" />
+                <img className="object-cover w-full h-full max-h-[20rem]" src="https://images7.alphacoders.com/133/thumbbig-1337527.webp" alt="" />
                 <div className="rounded-full absolute -bottom-20 md:-bottom-20 left-1/2 -translate-x-1/2 flex justify-center items-center w-fit">
-                    <img className="rounded-full w-[7rem] h-[7rem]" src="https://yt3.googleusercontent.com/ytc/AIdro_m05oPc8I5nhz_ej6JdKoxA6vglaI76AMqtDELBj1s2o0o=s160-c-k-c0x00ffffff-no-rj" alt="" />
+                    <img className="rounded-full w-[7rem] h-[7rem]" src={"man.png"} alt="" />
                 </div>
             </div>
             <div className="profile-Info text-white mt-24 w-[100%] flex flex-col items-center ">
@@ -25,7 +27,7 @@ const Navbar: React.FC<{ params: { [key: string]: string } }> = ({ params }) => 
             </div>
 
             <div className="w-[90%] mx-auto mt-10 flex flex-col mb-5 gap-2 p-2 items-center sm:flex-row">
-                <div className="bg-slate-900 w-full h-[20rem] flex flex-col jusitfy-center items-start overflow-auto rounded-lg sm:w-1/2">
+                <div className="bg-slate-900 w-full h-[20rem] flex flex-col jusitfy-center items-start overflow-auto overflow-x-hidden rounded-lg sm:w-1/2">
                     <p className="w-full text-center font-bold text-2xl sticky top-0 bg-slate-950 p-2">Supporters</p>
                     <ul className="px-2 flex flex-col gap-3 w-full justify-center items-start mx-3">
                         <li className="h-[2rem]">Hello this is me</li>
@@ -44,11 +46,15 @@ const Navbar: React.FC<{ params: { [key: string]: string } }> = ({ params }) => 
                     </ul>
                 </div>
 
-                <div className="bg-slate-900 w-full h-[20rem] rounded-lg sm:w-1/2 p-8">
-                    <h2 className="text-2xl font-bold my-5">Make a Payment</h2>
-                    <div className="flex gap-2">
+                <div className="bg-slate-900 w-full h-[24rem] overflow-hidden rounded-lg sm:w-1/2 p-8">
+                    <h2 className="text-2xl font-bold my-1 mb-1">Make a Payment</h2>
+                    <div className="flex gap-2 flex-col">
+
+                        <input type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Name" />
+                        <input type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Message" />
                         <input type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
                         <button className="bg-slate-950 p-3 rounded-lg font-bold">Pay</button>
+
                     </div>
 
                     <div>
