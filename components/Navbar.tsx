@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
                         </>
                     ) : (
                         <Link href={"/login"}>
-                            <LoginButton></LoginButton>
+                            <LoginButton text="Login" />
 
                         </Link>
                     )
