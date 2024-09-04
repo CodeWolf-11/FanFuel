@@ -16,7 +16,6 @@ export default function Home() {
           Join FanFuel today to fuel the creativity of the artists you admire. Your support empowers creators to bring their visions to life!
         </p>
         <div>
-          {/* <button type="button" className="text-white w-[8rem] bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold rounded-full  px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SignUp</button> */}
           <LoginButton text="Get Started" />
         </div>
       </div>
