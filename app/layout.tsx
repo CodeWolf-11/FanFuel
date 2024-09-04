@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SessionWrapper>
-        <body className={inter.className + "w-[100vw] mx-auto bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"}>
+        <body className={inter.className + "w-[100vw] mx-auto text-white bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"}>
           <Navbar />
           <div className="min-h-screen w-full overflow-x-hidden">
             {children}
