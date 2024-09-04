@@ -2,8 +2,18 @@
 
 import { signIn } from "next-auth/react";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const Page: React.FC = () => {
+
+    const router = useRouter();
+    const { data: session } = useSession();
+
+    if (session) {
+        router.push('/dashboard');
+    }
+
     return <>
         <div className="text-white py-4 container mx-auto w-[90%] h-[24rem] flex flex-col justify-center items-center">
             <h1 className="font-bold text-center text-xl">Login to get your fans to support you</h1>
