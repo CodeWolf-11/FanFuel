@@ -22,4 +22,24 @@ model User {
   cover     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  //Relations
+  initiatedPayments Payment[] @relation(name: "initiation")
+  receivedPayments  Payment[] @relation(name: "receive")
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  initiatorId String
+  toUserId    String
+  orderId     String
+  message     String
+  amount      String
+  CreatedAt   DateTime @default(now())
+  UpdatedAt   DateTime @updatedAt
+  done        Boolean  @default(false)
+
+  //relations
+  initiator User @relation(name: "initiation", fields: [initiatorId], references: [id])
+  toUser    User @relation(name: "receive", fields: [toUserId], references: [id])
 }
