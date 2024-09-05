@@ -14,15 +14,16 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(uuid())
-  name         String
-  email        String   @unique
-  username     String   @unique
-  profile      String?
-  cover        String?
-  publicAdress String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id            String   @id @default(uuid())
+  description   String?
+  name          String
+  email         String   @unique
+  username      String   @unique
+  profile       String?
+  cover         String?
+  publicAddress String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   //Relations
   initiatedPayments Payment[] @relation(name: "initiation")

@@ -4,14 +4,16 @@ import { signIn } from "next-auth/react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { nextAuthOptions } from "@/lib/nextAuthOptions";
 
 const Page: React.FC = () => {
 
     const router = useRouter();
     const { data: session } = useSession();
 
+
     if (session) {
-        router.push('/dashboard');
+        router.push('/' + session.user.username);
         console.log(session);
     }
 
