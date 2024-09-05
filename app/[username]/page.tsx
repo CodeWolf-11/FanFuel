@@ -29,7 +29,7 @@ const Page: React.FC<{ params: { [key: string]: string } }> = async ({ params })
             <div className="banner-image relative w-full">
                 <img className="object-cover w-full h-full max-h-[20rem]" src={currentUser.cover as string} alt="" />
                 <div className="rounded-full absolute -bottom-20 md:-bottom-20 left-1/2 -translate-x-1/2 flex justify-center items-center w-fit">
-                    <img className="rounded-full w-[7rem] h-[7rem]" src={session?.user.image} alt="" />
+                    <img className="rounded-full w-[7rem] h-[7rem]" src={currentUser.profile as string} alt="" />
                 </div>
             </div>
             <div className="profile-Info text-white mt-24 w-[100%] flex flex-col items-center ">
@@ -76,7 +76,7 @@ const Page: React.FC<{ params: { [key: string]: string } }> = async ({ params })
                     </div>
                 </div>
 
-                <Payment />
+                <Payment toAddress={currentUser.publicAddress} />
 
             </div>
         </div>
