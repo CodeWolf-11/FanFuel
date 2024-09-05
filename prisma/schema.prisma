@@ -14,14 +14,15 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  username  String   @unique
-  profile   String?
-  cover     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  username     String   @unique
+  profile      String?
+  cover        String?
+  publicAdress String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   //Relations
   initiatedPayments Payment[] @relation(name: "initiation")
@@ -32,7 +33,6 @@ model Payment {
   id          String   @id @default(uuid())
   initiatorId String
   toUserId    String
-  orderId     String
   message     String
   amount      String
   CreatedAt   DateTime @default(now())
@@ -41,5 +41,5 @@ model Payment {
 
   //relations
   initiator User @relation(name: "initiation", fields: [initiatorId], references: [id])
-  toUser    User @relation(name: "receive", fields: [toUserId], references: [id])
+  receiver  User @relation(name: "receive", fields: [toUserId], references: [id])
 }

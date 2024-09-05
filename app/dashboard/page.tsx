@@ -35,13 +35,8 @@ const Page: React.FC = async () => {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="credId" className="text-sm">RazorPay id</label>
-                    <input id="credId" type="text" className="p-2 text-black rounded-lg" />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="credSecret" className="text-sm">RazorPay secret</label>
-                    <input id="credSecret" type="text" className="p-2 text-black rounded-lg" />
+                    <label htmlFor="publicAddress" className="text-sm">Solana address</label>
+                    <input id="publicAddress" type="text" className="p-2 text-black rounded-lg" />
                 </div>
 
                 <button type="button" className="text-white  bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold rounded-full  px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save Changes</button>
