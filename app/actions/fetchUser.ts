@@ -18,7 +18,8 @@ export const fetchUser = async (username: string) => {
                 createdAt: true,
                 updatedAt: true,
                 name: true,
-                description: true
+                description: true,
+                id: true
             }
         });
 

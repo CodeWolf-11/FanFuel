@@ -9,7 +9,8 @@ export const createUser = async (email: string, name: string, profile: string, u
                 email: email
             },
             select: {
-                username: true
+                username: true,
+                id: true
             }
         });
 
@@ -29,7 +30,8 @@ export const createUser = async (email: string, name: string, profile: string, u
                     description: "Full Stack Developer | Mern Developer"
                 },
                 select: {
-                    username: true
+                    username: true,
+                    id: true,
                 }
             });
             return userInDb;

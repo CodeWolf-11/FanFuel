@@ -1,7 +1,7 @@
 "use client"
 
 import { useConnection, useWallet, WalletContextState } from "@solana/wallet-adapter-react";
-import React from "react";
+import React, { useState } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import { FC, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
@@ -18,9 +18,11 @@ import { clusterApiUrl, Connection, LAMPORTS_PER_SOL, PublicKey, SystemProgram, 
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { fetchUser } from "@/app/actions/fetchUser";
 import { Session } from "next-auth";
+import createPayments from "@/app/actions/createPayment";
+import { StringDecoder } from "string_decoder";
 
 
-async function sendToken(toAddress: string, amount: string, connection: Connection, wallet: WalletContextState) {
+async function sendToken(toAddress: string, amount: string, connection: Connection, wallet: WalletContextState, name: string, message: string, toUserId: string, fromUserId: string) {
 
     if (toAddress == "null" || toAddress == "") {
 
@@ -38,13 +40,21 @@ async function sendToken(toAddress: string, amount: string, connection: Connecti
 
     await wallet.sendTransaction(transaction, connection);
 
+    await createPayments(Number(amount) * LAMPORTS_PER_SOL, toUserId, fromUserId, message);
+
 }
 
 
-const Payment: React.FC<{ toAddress: string }> = ({ toAddress }) => {
+const Payment: React.FC<{ toAddress: string, toUserId: string }> = ({ toAddress, toUserId }) => {
 
     const wallet = useWallet();
     const { connection } = useConnection();
+
+    const [name, setName] = useState<string>();
+    const [message, setMessage] = useState<string>();
+    const [amount, setAmount] = useState<string>();
+
+    const { data: session } = useSession();
 
     return <>
 
@@ -56,12 +66,27 @@ const Payment: React.FC<{ toAddress: string }> = ({ toAddress }) => {
             </div>
             <div className="flex gap-2 flex-col mt-3">
 
-                <input type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Name" />
-                <input type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Message" />
-                <input type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
+                <input value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setName(e.target.value);
+                }} type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Name" />
+
+                <input value={message} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setMessage(e.target.value);
+                }} type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Message" />
+
+                <input value={amount} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setAmount(e.target.value);
+                }} type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
+
                 <button onClick={async () => {
-                    await sendToken(toAddress, "1", connection, wallet);
+
+                    if (name === undefined || name === "" || message === undefined || message === "" || amount === undefined || amount === "") {
+                        alert("Enter all the details to pay");
+                        return;
+                    }
+                    await sendToken(toAddress, amount, connection, wallet, name, message, toUserId, session?.user.id as string);
                     alert("payment sent");
+
                 }} className="bg-slate-950 text-white p-4 font-bold rounded-lg disabled:bg-gray-500 disabled:opacity-40" >Pay (SOL)</button>
 
             </div>

@@ -8,6 +8,7 @@ import { nextAuthOptions } from "@/lib/nextAuthOptions";
 import { redirect } from "next/navigation";
 import { fetchUser } from "../actions/fetchUser";
 import UserName from "@/components/UserNameTag";
+import prisma from "@/lib/db";
 
 const Page: React.FC<{ params: { [key: string]: string } }> = async ({ params }) => {
 
@@ -18,6 +19,26 @@ const Page: React.FC<{ params: { [key: string]: string } }> = async ({ params })
     }
 
     const currentUser = await fetchUser(params.username);
+
+    const paymentsReceived = await prisma.payment.findMany({
+        where: {
+            toUserId: currentUser?.id
+        },
+        select: {
+            id: true,
+            amount: true,
+            message: true,
+            initiator: {
+                select: {
+                    name: true,
+                    username: true,
+                    email: true,
+                    profile: true,
+                }
+            }
+
+        }
+    })
 
     if (!currentUser) {
         return <div className="w-[full] h-20rem flex text-3xl font-bold justify-center items-center">
@@ -62,21 +83,16 @@ const Page: React.FC<{ params: { [key: string]: string } }> = async ({ params })
                     <p className="w-full text-center font-bold text-2xl sticky top-0 bg-slate-950 p-2">Supporters</p>
                     <div className="flex flex-col gap-3 w-full justify-center items-start  mt-4 p-3">
 
-                        <Contribution />
-                        <Contribution />
-                        <Contribution />
-                        <Contribution />
-                        <Contribution />
-                        <Contribution />
-                        <Contribution />
-                        <Contribution />
-                        <Contribution />
-
+                        {
+                            paymentsReceived.map((payment) => {
+                                return <Contribution key={payment.id} name={payment.initiator.name} message={payment.message} amount={payment.amount} profile={payment.initiator.profile as string} />
+                            })
+                        }
 
                     </div>
                 </div>
 
-                <Payment toAddress={currentUser.publicAddress} />
+                <Payment toUserId={currentUser.id} toAddress={currentUser.publicAddress} />
 
             </div>
         </div>

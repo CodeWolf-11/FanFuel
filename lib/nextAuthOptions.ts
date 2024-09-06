@@ -9,6 +9,7 @@ interface GitHubProfile {
     avatar_url: string;
     email: string;
     username?: string
+    dataBaseId?: string
     // Add other relevant properties from the GitHub profile API response
 }
 
@@ -19,6 +20,7 @@ declare module 'next-auth' {
             email: string;
             image: string
             name: string
+            id: string
             // Add other properties as needed
         };
     }
@@ -27,6 +29,7 @@ declare module 'next-auth' {
 declare module 'next-auth/jwt' {
     interface JWT {
         username?: string;
+        dataBaseId?: string
     }
 }
 
@@ -49,6 +52,7 @@ export const nextAuthOptions: NextAuthOptions = {
                 const githubProfile = profile as GitHubProfile
                 const userInDb = await createUser(user.email as string, user.name as string, user.image as string, user.id);
                 githubProfile.username = userInDb?.username;
+                githubProfile.dataBaseId = userInDb?.id;
             }
             return true;
         },
@@ -58,6 +62,7 @@ export const nextAuthOptions: NextAuthOptions = {
             const githubProfile = profile as GitHubProfile;
             if (account) {
                 token.username = githubProfile.username;
+                token.dataBaseId = githubProfile.dataBaseId
             }
 
             return token;
@@ -65,6 +70,7 @@ export const nextAuthOptions: NextAuthOptions = {
 
         async session({ session, token, user }) {
             session.user.username = token.username;
+            session.user.id = token.dataBaseId as string;
             return session;
         },
     }
