@@ -42,9 +42,12 @@ async function sendToken(toAddress: string, amount: string, connection: Connecti
             background: '#333',
             color: "#fff"
         }
-    });
+    }).then(async (value) => {
+        console.log(value)
+        await createPayments(Number(amount) * LAMPORTS_PER_SOL, toUserId, fromUserId, message);
+    })
 
-    await createPayments(Number(amount) * LAMPORTS_PER_SOL, toUserId, fromUserId, message);
+
 
 }
 
