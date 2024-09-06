@@ -9,6 +9,7 @@ import {
 
 // Default styles that can be overridden by your app
 import '@solana/wallet-adapter-react-ui/styles.css';
+import { Toaster } from "react-hot-toast";
 
 
 const SessionWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -17,6 +18,7 @@ const SessionWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =
             <WalletProvider wallets={[]} autoConnect>
                 <WalletModalProvider>
                     {children}
+                    <Toaster />
                 </WalletModalProvider>
             </WalletProvider >
         </ConnectionProvider >

@@ -11,12 +11,13 @@ import { Connection, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } f
 // Default styles that can be overridden by your app
 import '@solana/wallet-adapter-react-ui/styles.css';
 import createPayments from "@/app/actions/createPayment";
+import { toast } from "react-hot-toast";
 
 
 async function sendToken(toAddress: string, amount: string, connection: Connection, wallet: WalletContextState, name: string, message: string, toUserId: string, fromUserId: string) {
 
     if (toAddress == "null" || toAddress == "") {
-
+        toast.error("Invalid public address of solana")
     }
 
     const transaction = new Transaction();
@@ -29,7 +30,19 @@ async function sendToken(toAddress: string, amount: string, connection: Connecti
         })
     )
 
-    await wallet.sendTransaction(transaction, connection);
+    const transactionPromise = wallet.sendTransaction(transaction, connection);
+
+    toast.promise(transactionPromise, {
+        loading: 'Processing...',
+        success: 'Transaction Completed',
+        error: "Something went wrong"
+    }, {
+        style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: "#fff"
+        }
+    });
 
     await createPayments(Number(amount) * LAMPORTS_PER_SOL, toUserId, fromUserId, message);
 
