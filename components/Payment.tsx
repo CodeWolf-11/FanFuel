@@ -92,7 +92,7 @@ const Payment: React.FC<{ toAddress: string, toUserId: string }> = ({ toAddress,
                         return;
                     }
                     await sendToken(toAddress, amount, connection, wallet, name, message, toUserId, session?.user.id as string);
-                    alert("payment sent");
+
 
                 }} className="bg-slate-950 text-white p-4 font-bold rounded-lg disabled:bg-gray-500 disabled:opacity-40" >Pay (SOL)</button>
 
