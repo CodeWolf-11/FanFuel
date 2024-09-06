@@ -4,7 +4,6 @@ import { signIn } from "next-auth/react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { nextAuthOptions } from "@/lib/nextAuthOptions";
 
 const Page: React.FC = () => {
 

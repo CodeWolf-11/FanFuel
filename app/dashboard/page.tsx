@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/lib/nextAuthOptions";
 import { fetchUser } from "../actions/fetchUser";
 import { signOut, useSession } from "next-auth/react";
 import { SubmitToDashBoard } from "../actions/SubmitToDashBoard";

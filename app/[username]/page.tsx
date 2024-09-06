@@ -2,7 +2,6 @@ import React from "react";
 import "@/public/man.png";
 import Payment from "@/components/Payment";
 import Contribution from "@/components/Contribution";
-import { getServerActionDispatcher } from "next/dist/client/components/app-router";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/lib/nextAuthOptions";
 import { redirect } from "next/navigation";
