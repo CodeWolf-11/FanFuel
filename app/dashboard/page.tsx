@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { fetchUser } from "../actions/fetchUser";
 import { signOut, useSession } from "next-auth/react";
 import { SubmitToDashBoard } from "../actions/SubmitToDashBoard";
+import toast from "react-hot-toast";
 
 const Page: React.FC = () => {
 
@@ -99,7 +100,7 @@ const Page: React.FC = () => {
                     }, session.user.email);
 
                     setIsChanged(false);
-
+                    toast.success("Details Updated! You will be logged Out");
                     signOut();
 
                 }} type="button" className="text-white  bg-blue-600 hover:bg-blue-800 disabled:opacity-35 focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold rounded-full  px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" disabled={!isChanged}>Save Changes</button>
