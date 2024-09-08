@@ -47,8 +47,6 @@ async function sendToken(toAddress: string, amount: string, connection: Connecti
         await createPayments(Number(amount) * LAMPORTS_PER_SOL, toUserId, fromUserId, message);
     })
 
-
-
 }
 
 
@@ -91,6 +89,11 @@ const Payment: React.FC<{ toAddress: string, toUserId: string }> = ({ toAddress,
                         alert("Enter all the details to pay");
                         return;
                     }
+
+                    setAmount("");
+                    setName("");
+                    setMessage("");
+
                     await sendToken(toAddress, amount, connection, wallet, name, message, toUserId, session?.user.id as string);
 
 
@@ -101,9 +104,17 @@ const Payment: React.FC<{ toAddress: string, toUserId: string }> = ({ toAddress,
 
             <div>
                 <div className="flex gap-2 mt-5">
-                    <button className="bg-slate-950 p-3 rounded-lg">0.1 SOL</button>
-                    <button className="bg-slate-950 p-3 rounded-lg">0.3 SOL</button>
-                    <button className="bg-slate-950 p-3 rounded-lg">1 SOL</button>
+                    <button className="bg-slate-950 p-3 rounded-lg" onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        setAmount(`${0.1}`);
+                    }}>0.1 SOL</button>
+
+                    <button className="bg-slate-950 p-3 rounded-lg" onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        setAmount(`${0.3}`);
+                    }}>0.3 SOL</button>
+
+                    <button className="bg-slate-950 p-3 rounded-lg" onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        setAmount(`${1}`);
+                    }}>1 SOL</button>
                 </div>
             </div>
 
